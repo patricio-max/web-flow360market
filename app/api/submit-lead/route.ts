@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       const resend = new Resend(resendKey)
 
       await resend.emails.send({
-        from: 'Flow360 Market <noreply@flow360market.com>',
+        from: 'Flow360 Market <onboarding@resend.dev>',
         to: notificationEmail,
         subject: `[Flow360] New request — ${data.companyName} (${label.toUpperCase()})`,
         text: `

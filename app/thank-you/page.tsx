@@ -83,10 +83,10 @@ export default function ThankYouPage() {
           <p className="mt-8 text-xs text-[var(--color-text-muted)]">
             If it is urgent, you can write to{' '}
             <Link
-              href="mailto:hello@flow360market.com"
+              href="mailto:contact@flow360market.com"
               className="text-[var(--color-accent)] hover:underline"
             >
-              hello@flow360market.com
+              contact@flow360market.com
             </Link>
           </p>
         </div>
