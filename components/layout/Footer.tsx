@@ -52,10 +52,10 @@ export function Footer() {
               <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
                 <li>
                   <a
-                    href="mailto:hello@flow360market.com"
+                    href="mailto:contact@flow360market.com"
                     className="transition-colors hover:text-[var(--color-text-primary)]"
                   >
-                    hello@flow360market.com
+                    contact@flow360market.com
                   </a>
                 </li>
                 <li>
