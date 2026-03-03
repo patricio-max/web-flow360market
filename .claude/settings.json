@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm init -y)",
+      "Bash(npm install next@latest react@latest react-dom@latest typescript@latest @types/react@latest @types/react-dom@latest @types/node@latest tailwindcss@latest autoprefixer@latest postcss@latest)",
+      "Bash(npm install @tailwindcss/postcss eslint eslint-config-next)"
+    ]
+  }
+}

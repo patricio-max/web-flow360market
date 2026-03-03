@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "C:\\Users\\Patricio\\.claude\\projects\\c--Users-Patricio-Proyectos-flow-360-web"
+    ],
+    "allow": [
+      "Bash(node -e \"console.log\\(''Next:'', require\\(''./node_modules/next/package.json''\\).version, ''\\\\nTailwind:'', require\\(''./node_modules/tailwindcss/package.json''\\).version, ''\\\\nZod:'', require\\(''./node_modules/zod/package.json''\\).version, ''\\\\nFramer:'', require\\(''./node_modules/framer-motion/package.json''\\).version\\)\")"
+    ]
+  }
+}

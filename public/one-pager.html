@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flow360 Market — Strategic One-Pager</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #141414;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+      gap: 16px;
+    }
+
+    .hint {
+      color: #444;
+      font-size: 9px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-align: center;
+    }
+
+    /* A4 page container: 210mm × 297mm → 794px × 1123px at 96 dpi */
+    .page {
+      width: 794px;
+      background: #0A0A0A;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Dot grid background */
+    .page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #1e1e1e 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top green glow */
+    .page::after {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: -60px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(22,163,74,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ──────────────────────────────────── */
+    .header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px 16px;
+      border-bottom: 2px solid rgba(255,255,255,0.35);
+    }
+
+    .brand {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1;
+    }
+    .brand span.g { color: #16A34A; }
+    .brand-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background: #16A34A;
+      border-radius: 50%;
+      margin-left: 2px;
+      vertical-align: middle;
+      margin-bottom: 3px;
+    }
+
+    .header-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      border: 2px solid rgba(22,163,74,0.85);
+      background: rgba(22,163,74,0.18);
+      padding: 6px 16px;
+      border-radius: 20px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 24px 32px 20px;
+      border-bottom: 2px solid rgba(255,255,255,0.35);
+    }
+
+    .hero h1 {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      color: #f0f0f0;
+      line-height: 1.18;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #16A34A;
+    }
+
+    .hero-sub {
+      margin-top: 9px;
+      font-size: 10px;
+      color: #ccc;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-sub-dot {
+      width: 3px;
+      height: 3px;
+      background: #16A34A;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── MAIN 2-COLUMN ───────────────────────────── */
+    .main {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex: 1;
+    }
+
+    .col-left {
+      flex: 1;
+      min-width: 0;
+      padding: 22px 26px 22px 32px;
+      border-right: 2px solid rgba(255,255,255,0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .col-right {
+      width: 272px;
+      flex-shrink: 0;
+      padding: 22px 32px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* ── SECTION LABELS ──────────────────────────── */
+    .section-label {
+      font-size: 8px;
+      font-weight: 700;
+      color: #16A34A;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 7px;
+    }
+
+    /* ── PROBLEM TEXT ────────────────────────────── */
+    .problem-text {
+      font-size: 11px;
+      color: #ddd;
+      line-height: 1.75;
+    }
+
+    .problem-text strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ── SERVICE LIST ────────────────────────────── */
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+    }
+
+    .service-marker {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      background: rgba(22,163,74,0.1);
+      border: 1px solid rgba(22,163,74,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .service-marker svg {
+      width: 7px;
+      height: 7px;
+      stroke: #16A34A;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-text {
+      font-size: 10.5px;
+      color: #ddd;
+      line-height: 1.55;
+    }
+
+    .service-text strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ── CLIENT REFERENCE ────────────────────────── */
+    .client-ref {
+      background: rgba(22,163,74,0.04);
+      border: 1px solid rgba(22,163,74,0.15);
+      border-left: 3px solid #16A34A;
+      border-radius: 5px;
+      padding: 11px 14px;
+    }
+
+    .client-ref-label {
+      font-size: 6.5px;
+      font-weight: 700;
+      color: #16A34A;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 5px;
+    }
+
+    .client-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f0f0f0;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .client-desc {
+      margin-top: 4px;
+      font-size: 9px;
+      color: #666;
+      line-height: 1.55;
+    }
+
+    /* ── MODEL DIAGRAM ───────────────────────────── */
+    .model-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .model-layer {
+      border-radius: 5px;
+      padding: 9px 11px;
+    }
+
+    .layer-title {
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .layer-sub {
+      font-size: 7.5px;
+      margin-top: 2px;
+      line-height: 1.35;
+      font-weight: 400;
+    }
+
+    .layer-dev  { background: rgba(120, 53, 15, 0.6); border: 1px solid rgba(180,80,20,0.25); }
+    .layer-dev .layer-sub  { color: rgba(255,190,130,0.6); }
+
+    .layer-mkt  { background: rgba(23, 37, 84, 0.7); border: 1px solid rgba(60,100,200,0.2); }
+    .layer-mkt .layer-sub  { color: rgba(140,170,255,0.6); }
+
+    .layer-ops  { background: rgba(20, 50, 30, 0.7); border: 1px solid rgba(40,140,60,0.2); }
+    .layer-ops .layer-sub  { color: rgba(130,210,150,0.6); }
+
+    .layer-office {
+      background: rgba(10, 10, 25, 0.9);
+      border: 1px solid rgba(22,163,74,0.35);
+      border-top: 2px solid #16A34A;
+    }
+    .layer-office .layer-title { color: #16A34A; }
+    .layer-office .layer-sub   { color: rgba(22,163,74,0.5); }
+
+    .office-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 7px;
+    }
+
+    .chip {
+      font-size: 6.5px;
+      font-weight: 700;
+      color: rgba(22,163,74,0.75);
+      border: 1px solid rgba(22,163,74,0.2);
+      background: rgba(22,163,74,0.05);
+      padding: 2px 5px;
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .arrow-connector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 13px;
+    }
+
+    .arrow-connector svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* ── WHY FLOW360 ─────────────────────────────── */
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .why-item {
+      font-size: 10px;
+      color: #ddd;
+      line-height: 1.5;
+      padding-left: 12px;
+      position: relative;
+    }
+
+    .why-item::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #16A34A;
+      font-weight: 700;
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .why-item strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      border-top: 2px solid rgba(255,255,255,0.35);
+      padding: 13px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: rgba(10,10,10,0.6);
+    }
+
+    .footer-cert {
+      font-size: 8.5px;
+      color: #bbb;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .footer-cert strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .footer-divider {
+      width: 1px;
+      height: 28px;
+      background: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .footer-name {
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-role {
+      font-size: 8px;
+      color: #ccc;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-url {
+      font-size: 8.5px;
+      color: #ccc;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── CHARTS SECTION ─────────────────────────── */
+    .charts-section {
+      position: relative;
+      z-index: 1;
+      border-top: 2px solid rgba(255,255,255,0.35);
+      padding: 12px 32px 10px;
+      background: rgba(11,11,11,0.6);
+      flex-shrink: 0;
+    }
+
+    .charts-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 9px;
+    }
+
+    .charts-client-note {
+      font-size: 7px;
+      color: #2a2a2a;
+      letter-spacing: 0.04em;
+    }
+
+    .charts-row {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .chart-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .chart-block-wide { flex: 1.5; }
+    .chart-block-narrow { flex: 1; }
+
+    .chart-label {
+      font-size: 8px;
+      font-weight: 700;
+      color: #ccc;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .chart-block svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── PRINT ───────────────────────────────────── */
+    @media print {
+      body { background: white; padding: 0; }
+      .hint { display: none; }
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        border: none;
+        border-radius: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="hint">Flow360 Market — One-Pager &nbsp;·&nbsp; Ctrl+P → Save as PDF → Margins: None, Scale: 100%</p>
+
+  <div class="page">
+
+    <!-- ── HEADER ── -->
+    <div class="header">
+      <div class="brand">
+        Flow360<span class="g">Market</span><span class="brand-dot"></span>
+      </div>
+      <div class="header-badge">Hospitality &amp; Restaurant Operations</div>
+    </div>
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+      <h1>We redesign how hospitality<br/>and restaurant groups <em>operate</em>.</h1>
+      <div class="hero-sub">
+        Less friction
+        <span class="hero-sub-dot"></span>
+        Better margins
+        <span class="hero-sub-dot"></span>
+        Decisions from data, not intuition
+      </div>
+    </div>
+
+    <!-- ── MAIN ── -->
+    <div class="main">
+
+      <!-- LEFT COLUMN -->
+      <div class="col-left">
+
+        <!-- The Problem -->
+        <div>
+          <div class="section-label">The Problem</div>
+          <p class="problem-text">
+            Most hospitality groups grow faster than their <strong>operational architecture</strong>.
+            The result: a fragmented backoffice, disconnected processes, and decisions made from
+            intuition instead of data. <strong>No unified visibility across units.</strong><br/>
+            The cost is invisible — until it shows up in shrinking margins, recurring complaints,
+            and a team that runs on firefighting instead of systems.
+          </p>
+        </div>
+
+        <!-- What We Do -->
+        <div>
+          <div class="section-label">What We Do for Hospitality Groups</div>
+          <div class="service-list">
+
+            <div class="service-item">
+              <div class="service-marker">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+              <div class="service-text">
+                <strong>Operational diagnosis</strong> — process mapping, friction measurement and baseline KPIs across all units
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-marker">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+              <div class="service-text">
+                <strong>Backoffice redesign</strong> — structuring The Office as the group's operating system: HR, Purchasing, Accounting, Control &amp; Finance
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-marker">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+              <div class="service-text">
+                <strong>Reporting &amp; management control</strong> — dashboards with real-time visibility at group level, enabling strategic decisions from data
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-marker">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+              <div class="service-text">
+                <strong>Purchasing &amp; cost optimization</strong> — reduce waste, standardize criteria, protect margins across units
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-marker">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+              <div class="service-text">
+                <strong>Scalable group architecture</strong> — a structure built to absorb new business units without added complexity or dependency on individuals
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="col-right">
+
+        <!-- Why Flow360 -->
+        <div>
+          <div class="section-label">Why Flow360</div>
+          <div class="why-list">
+            <div class="why-item">
+              <strong>Evidence before opinion</strong> — we don't diagnose without data or recommend without metrics
+            </div>
+            <div class="why-item">
+              <strong>Process first, AI second</strong> — technology amplifies; if the process is broken, automation breaks it faster
+            </div>
+            <div class="why-item">
+              <strong>Max. 3 clients simultaneously</strong> — full focus, not a report factory
+            </div>
+            <div class="why-item">
+              <strong>Measurable ROI</strong> — if we can't estimate the return in numbers, we don't recommend the improvement
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ── CHARTS SECTION ── -->
+    <div class="charts-section">
+      <div class="charts-header">
+        <div class="section-label" style="margin-bottom:0;">Reporting Output</div>
+      </div>
+      <div class="charts-row">
+
+        <!-- Line Chart: Order & Ticket Average -->
+        <div class="chart-block chart-block-wide">
+          <div class="chart-label">Order &amp; Ticket Average — 3-Year Trend</div>
+          <svg viewBox="0 0 300 90" xmlns="http://www.w3.org/2000/svg">
+            <line x1="28" y1="18" x2="295" y2="18" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+            <line x1="28" y1="38" x2="295" y2="38" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+            <line x1="28" y1="58" x2="295" y2="58" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+            <line x1="28" y1="78" x2="295" y2="78" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+            <line x1="95"  y1="15" x2="95"  y2="80" stroke="rgba(255,255,255,0.28)" stroke-width="1" stroke-dasharray="2,2"/>
+            <line x1="170" y1="15" x2="170" y2="80" stroke="rgba(255,255,255,0.28)" stroke-width="1" stroke-dasharray="2,2"/>
+            <line x1="245" y1="15" x2="245" y2="80" stroke="rgba(255,255,255,0.28)" stroke-width="1" stroke-dasharray="2,2"/>
+            <text x="95"  y="88" text-anchor="middle" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">2022</text>
+            <text x="170" y="88" text-anchor="middle" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">2023</text>
+            <text x="245" y="88" text-anchor="middle" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">2024</text>
+            <text x="283" y="88" text-anchor="middle" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">2025</text>
+            <!-- Gold: Ticket Average — upward trend with volatility -->
+            <polyline points="32,55 41,80 50,73 59,70 68,68 77,73 86,75 95,68 104,64 113,66 122,62 131,65 140,58 149,52 158,56 167,50 176,48 185,53 194,50 203,44 212,41 221,37 230,34 239,28 248,32 257,27 266,28 275,31 284,28 293,29"
+              fill="none" stroke="#F5A623" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <!-- Blue: Order Average — steady upward -->
+            <polyline points="32,88 41,80 50,77 59,75 68,74 77,75 86,73 95,72 104,70 113,69 122,71 131,69 140,67 149,65 158,68 167,66 176,64 185,63 194,63 203,62 212,61 221,60 230,59 239,58 248,60 257,59 266,58 275,58 284,57 293,56"
+              fill="none" stroke="#4B8BDB" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <rect x="32" y="7" width="9" height="3.5" fill="#F5A623" rx="1"/>
+            <text x="44" y="10.5" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">Ticket Avg</text>
+            <rect x="100" y="7" width="9" height="3.5" fill="#4B8BDB" rx="1"/>
+            <text x="112" y="10.5" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">Order Avg</text>
+          </svg>
+        </div>
+
+        <!-- Horizontal Bar Chart: Menu Mix (no values) -->
+        <div class="chart-block chart-block-narrow">
+          <div class="chart-label">Menu Mix — Period Comparison</div>
+          <svg viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg">
+            <text x="60" y="12"  text-anchor="end" fill="#ddd" font-size="5.5" font-family="Inter,system-ui,sans-serif">Premium Cut A</text>
+            <rect x="63" y="5"  width="71" height="8" fill="#4B8BDB" rx="1"/><rect x="134" y="5"  width="83" height="8" fill="#F5A623" rx="1"/>
+            <text x="60" y="23"  text-anchor="end" fill="#ddd" font-size="5.5" font-family="Inter,system-ui,sans-serif">Premium Cut B</text>
+            <rect x="63" y="16" width="66" height="8" fill="#4B8BDB" rx="1"/><rect x="129" y="16" width="88" height="8" fill="#F5A623" rx="1"/>
+            <text x="60" y="34"  text-anchor="end" fill="#ddd" font-size="5.5" font-family="Inter,system-ui,sans-serif">Wagyu Selection</text>
+            <rect x="63" y="27" width="86" height="8" fill="#4B8BDB" rx="1"/><rect x="149" y="27" width="68" height="8" fill="#F5A623" rx="1"/>
+            <text x="60" y="45"  text-anchor="end" fill="#ddd" font-size="5.5" font-family="Inter,system-ui,sans-serif">BBQ Special</text>
+            <rect x="63" y="38" width="83" height="8" fill="#4B8BDB" rx="1"/><rect x="146" y="38" width="71" height="8" fill="#F5A623" rx="1"/>
+            <text x="60" y="56"  text-anchor="end" fill="#ddd" font-size="5.5" font-family="Inter,system-ui,sans-serif">Grill Signature</text>
+            <rect x="63" y="49" width="77" height="8" fill="#4B8BDB" rx="1"/><rect x="140" y="49" width="77" height="8" fill="#F5A623" rx="1"/>
+            <text x="60" y="67"  text-anchor="end" fill="#ddd" font-size="5.5" font-family="Inter,system-ui,sans-serif">Seafood Feature</text>
+            <rect x="63" y="60" width="62" height="8" fill="#4B8BDB" rx="1"/><rect x="125" y="60" width="92" height="8" fill="#F5A623" rx="1"/>
+            <text x="60" y="78"  text-anchor="end" fill="#ddd" font-size="5.5" font-family="Inter,system-ui,sans-serif">Spring Special</text>
+            <rect x="63" y="71" width="88" height="8" fill="#4B8BDB" rx="1"/><rect x="151" y="71" width="66" height="8" fill="#F5A623" rx="1"/>
+            <rect x="85"  y="82" width="7" height="3.5" fill="#4B8BDB" rx="0.5"/>
+            <text x="95"  y="86" fill="#ddd" font-size="5.5" font-family="Inter,system-ui,sans-serif">Period 1</text>
+            <rect x="140" y="82" width="7" height="3.5" fill="#F5A623" rx="0.5"/>
+            <text x="150" y="86" fill="#ddd" font-size="5.5" font-family="Inter,system-ui,sans-serif">Period 2</text>
+          </svg>
+        </div>
+
+      </div>
+
+      <div class="charts-row" style="margin-top:12px;">
+
+        <!-- Grouped Bar Chart: Purchases by Storage -->
+        <div class="chart-block" style="flex:1.5;">
+          <div class="chart-label">Purchases by Storage — Monthly Trend</div>
+          <svg viewBox="0 0 300 90" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="25" x2="292" y2="25" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+            <line x1="20" y1="40" x2="292" y2="40" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+            <line x1="20" y1="55" x2="292" y2="55" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+            <line x1="20" y1="70" x2="292" y2="70" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+            <line x1="197" y1="20" x2="197" y2="80" stroke="rgba(255,255,255,0.28)" stroke-width="1" stroke-dasharray="2,2"/>
+            <text x="108" y="89" text-anchor="middle" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">2024</text>
+            <text x="247" y="89" text-anchor="middle" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">2025</text>
+            <!-- 12 monthly groups (baseline y=80) -->
+            <rect x="24"  y="57" width="8" height="23" fill="#4B8BDB" rx="1"/><rect x="34"  y="45" width="8" height="35" fill="#F5A623" rx="1"/>
+            <rect x="46"  y="53" width="8" height="27" fill="#4B8BDB" rx="1"/><rect x="56"  y="45" width="8" height="35" fill="#F5A623" rx="1"/>
+            <rect x="68"  y="51" width="8" height="29" fill="#4B8BDB" rx="1"/><rect x="78"  y="38" width="8" height="42" fill="#F5A623" rx="1"/>
+            <rect x="90"  y="52" width="8" height="28" fill="#4B8BDB" rx="1"/><rect x="100" y="28" width="8" height="52" fill="#F5A623" rx="1"/>
+            <rect x="112" y="55" width="8" height="25" fill="#4B8BDB" rx="1"/><rect x="122" y="33" width="8" height="47" fill="#F5A623" rx="1"/>
+            <rect x="134" y="58" width="8" height="22" fill="#4B8BDB" rx="1"/><rect x="144" y="33" width="8" height="47" fill="#F5A623" rx="1"/>
+            <rect x="156" y="52" width="8" height="28" fill="#4B8BDB" rx="1"/><rect x="166" y="37" width="8" height="43" fill="#F5A623" rx="1"/>
+            <rect x="178" y="59" width="8" height="21" fill="#4B8BDB" rx="1"/><rect x="188" y="33" width="8" height="47" fill="#F5A623" rx="1"/>
+            <rect x="200" y="65" width="8" height="15" fill="#4B8BDB" rx="1"/><rect x="210" y="36" width="8" height="44" fill="#F5A623" rx="1"/>
+            <rect x="222" y="61" width="8" height="19" fill="#4B8BDB" rx="1"/><rect x="232" y="37" width="8" height="43" fill="#F5A623" rx="1"/>
+            <rect x="244" y="55" width="8" height="25" fill="#4B8BDB" rx="1"/><rect x="254" y="32" width="8" height="48" fill="#F5A623" rx="1"/>
+            <rect x="266" y="59" width="8" height="21" fill="#4B8BDB" rx="1"/><rect x="276" y="32" width="8" height="48" fill="#F5A623" rx="1"/>
+            <rect x="24" y="7" width="9" height="3.5" fill="#4B8BDB" rx="1"/>
+            <text x="36" y="10.5" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">Kitchen</text>
+            <rect x="80" y="7" width="9" height="3.5" fill="#F5A623" rx="1"/>
+            <text x="92" y="10.5" fill="#ddd" font-size="6.5" font-family="Inter,system-ui,sans-serif">Other Storage</text>
+          </svg>
+        </div>
+
+        <!-- Donut Chart: Purchases by Category -->
+        <div class="chart-block" style="flex:1;">
+          <div class="chart-label">Purchases by Category</div>
+          <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#1a1a1a" stroke-width="18"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#4B8BDB"  stroke-width="18" stroke-dasharray="50 170" stroke-dashoffset="0"    transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#F5A623"  stroke-width="18" stroke-dasharray="27 193" stroke-dashoffset="-50"   transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#9B59B6"  stroke-width="18" stroke-dasharray="20 200" stroke-dashoffset="-77"   transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#1ABC9C"  stroke-width="18" stroke-dasharray="20 200" stroke-dashoffset="-97"   transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#27AE60"  stroke-width="18" stroke-dasharray="16 204" stroke-dashoffset="-117"  transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#E67E22"  stroke-width="18" stroke-dasharray="14 206" stroke-dashoffset="-133"  transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#3a3a3a"  stroke-width="18" stroke-dasharray="73 147" stroke-dashoffset="-147"  transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="24" fill="#0A0A0A"/>
+            <rect x="95" y="8"  width="6" height="6" fill="#4B8BDB" rx="0.5"/><text x="104" y="14" fill="#ddd" font-size="6" font-family="Inter,system-ui,sans-serif">Meat</text>
+            <rect x="95" y="20" width="6" height="6" fill="#F5A623" rx="0.5"/><text x="104" y="26" fill="#ddd" font-size="6" font-family="Inter,system-ui,sans-serif">Seafood</text>
+            <rect x="95" y="32" width="6" height="6" fill="#9B59B6" rx="0.5"/><text x="104" y="38" fill="#ddd" font-size="6" font-family="Inter,system-ui,sans-serif">Wine</text>
+            <rect x="95" y="44" width="6" height="6" fill="#1ABC9C" rx="0.5"/><text x="104" y="50" fill="#ddd" font-size="6" font-family="Inter,system-ui,sans-serif">Spirits</text>
+            <rect x="95" y="56" width="6" height="6" fill="#27AE60" rx="0.5"/><text x="104" y="62" fill="#ddd" font-size="6" font-family="Inter,system-ui,sans-serif">Groceries</text>
+            <rect x="95" y="68" width="6" height="6" fill="#E67E22" rx="0.5"/><text x="104" y="74" fill="#ddd" font-size="6" font-family="Inter,system-ui,sans-serif">Dairy</text>
+            <rect x="95" y="80" width="6" height="6" fill="#3a3a3a" rx="0.5"/><text x="104" y="86" fill="#ddd" font-size="6" font-family="Inter,system-ui,sans-serif">Other</text>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="footer">
+      <div class="footer-cert">
+        <strong>Lean® Six Sigma Green Belt</strong> · KAIZEN™ Institute Consulting Group<br/>
+        CSGB-120-CHL &nbsp;·&nbsp; N° Reg: 47.908 &nbsp;·&nbsp; October 2020
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-contact">
+        <span class="footer-name">Patricio Valdés Pascual</span>
+        <span class="footer-role">Operational Redesign Consultant</span>
+        <span class="footer-url">+34 644 79 86 60 &nbsp;·&nbsp; www.flow360market.com &nbsp;·&nbsp; contact@flow360market.com</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

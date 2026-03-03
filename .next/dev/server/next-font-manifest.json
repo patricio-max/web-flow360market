@@ -1,0 +1,19 @@
+{
+  "app": {
+    "[project]/app/about/page": [
+      "static/media/Geist_Variable-s.p.92592eb2.woff2"
+    ],
+    "[project]/app/audit/page": [
+      "static/media/Geist_Variable-s.p.92592eb2.woff2"
+    ],
+    "[project]/app/cases/page": [
+      "static/media/Geist_Variable-s.p.92592eb2.woff2"
+    ],
+    "[project]/app/page": [
+      "static/media/Geist_Variable-s.p.92592eb2.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

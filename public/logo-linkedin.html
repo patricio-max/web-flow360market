@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flow360 Market — LinkedIn Logo</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 24px;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .hint {
+      color: #555;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── Logo card: 500×500 ── */
+    .logo-card {
+      width: 500px;
+      height: 500px;
+      background: #0A0A0A;
+      border-radius: 0; /* square for LinkedIn crop */
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Dot grid */
+    .logo-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #1e1e1e 1.5px, transparent 1.5px);
+      background-size: 22px 22px;
+      opacity: 0.7;
+    }
+
+    /* Top-right glow */
+    .logo-card::after {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle, rgba(22,163,74,0.18) 0%, transparent 65%);
+    }
+
+    /* Bottom-left secondary glow */
+    .glow-bl {
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(22,163,74,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .logo-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .wordmark {
+      font-size: 62px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+    }
+
+    .wordmark .green { color: #16A34A; }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #16A34A;
+      border-radius: 50%;
+      margin-left: 5px;
+      margin-bottom: 8px;
+      flex-shrink: 0;
+    }
+
+    .tagline {
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #555;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .accent-bar {
+      width: 40px;
+      height: 3px;
+      background: #16A34A;
+      border-radius: 2px;
+      margin-top: 18px;
+    }
+
+    /* ── Variants label ── */
+    .variants {
+      display: flex;
+      gap: 20px;
+    }
+
+    /* Dark bg variant (same as above, smaller) */
+    .logo-sm {
+      width: 200px;
+      height: 200px;
+      background: #0A0A0A;
+      border-radius: 50%; /* circle variant */
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-sm::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #1e1e1e 1px, transparent 1px);
+      background-size: 14px 14px;
+      opacity: 0.6;
+    }
+
+    .logo-sm::after {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 140px; height: 140px;
+      background: radial-gradient(circle, rgba(22,163,74,0.2) 0%, transparent 65%);
+    }
+
+    .logo-sm .logo-inner .wordmark { font-size: 24px; }
+    .logo-sm .logo-inner .dot { width: 4px; height: 4px; margin-left: 2px; margin-bottom: 3px; }
+    .logo-sm .logo-inner .tagline { font-size: 5px; margin-top: 6px; }
+    .logo-sm .logo-inner .accent-bar { width: 16px; height: 1.5px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <p class="hint">Square export · 500 × 500 px · Screenshot this card</p>
+
+  <!-- MAIN EXPORT -->
+  <div class="logo-card" id="main">
+    <div class="glow-bl"></div>
+    <div class="logo-inner">
+      <div class="wordmark">
+        Flow360<span class="green">Market</span><span class="dot"></span>
+      </div>
+      <div class="accent-bar"></div>
+      <div class="tagline">Operational Redesign</div>
+    </div>
+  </div>
+
+  <p class="hint">Circle preview (LinkedIn crops to circle)</p>
+
+  <!-- CIRCLE PREVIEW -->
+  <div class="logo-sm">
+    <div class="logo-inner">
+      <div class="wordmark">
+        Flow360<span class="green">Market</span><span class="dot"></span>
+      </div>
+      <div class="accent-bar"></div>
+      <div class="tagline">Operational Redesign</div>
+    </div>
+  </div>
+
+  <p class="hint" style="font-size:9px; max-width:500px; text-align:center;">
+    Open in browser → right-click logo card → "Inspect" → find the div#main → right-click → "Capture node screenshot"<br/>
+    (Chrome DevTools) &nbsp;·&nbsp; Or use any screenshot tool cropped to the square
+  </p>
+
+</body>
+</html>

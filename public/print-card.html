@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flow360 Market — Business Card PRINT</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    /* ── PAGE SETUP ── 85mm × 55mm, one card per page ── */
+    @page {
+      size: 85mm 55mm;
+      margin: 0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Each card = one page */
+    .card {
+      width: 85mm;
+      height: 55mm;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    /* ─── FRONT ─────────────────────────────── */
+    .card-front {
+      background: #0A0A0A;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 7.5mm 8mm 6.5mm;
+    }
+
+    .card-front::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #1e1e1e 1px, transparent 1px);
+      background-size: 4.8mm 4.8mm;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .card-front::after {
+      content: '';
+      position: absolute;
+      top: -10mm;
+      right: -10mm;
+      width: 42mm;
+      height: 42mm;
+      background: radial-gradient(circle, rgba(22,163,74,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .front-logo { position: relative; z-index: 1; }
+
+    .brand {
+      font-size: 5.5mm;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .brand span { color: #16A34A; }
+
+    .brand-dot {
+      display: inline-block;
+      width: 1.3mm;
+      height: 1.3mm;
+      background: #16A34A;
+      border-radius: 50%;
+      margin-left: 0.5mm;
+      vertical-align: middle;
+      margin-bottom: 0.8mm;
+    }
+
+    .front-bottom { position: relative; z-index: 1; }
+
+    .front-accent-line {
+      width: 7.5mm;
+      height: 0.5mm;
+      background: #16A34A;
+      margin-bottom: 2.5mm;
+      border-radius: 0.5mm;
+    }
+
+    .front-tagline {
+      font-size: 2.2mm;
+      font-weight: 500;
+      color: #999;
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+    }
+
+    .front-tagline strong {
+      color: #ddd;
+      font-weight: 600;
+    }
+
+    /* ─── BACK ──────────────────────────────── */
+    .card-back {
+      background: #0A0A0A;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 6.5mm 8mm 6mm;
+    }
+
+    .card-back::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+      background-size: 4.8mm 4.8mm;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .card-back::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 0.8mm;
+      background: #16A34A;
+    }
+
+    .back-name-block { position: relative; z-index: 1; }
+
+    .back-name {
+      font-size: 3.5mm;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .back-role {
+      margin-top: 1.2mm;
+      font-size: 2mm;
+      font-weight: 500;
+      color: #16A34A;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .back-contact {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6mm;
+    }
+
+    .back-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+    }
+
+    .back-contact-icon {
+      width: 3.7mm;
+      height: 3.7mm;
+      border-radius: 0.8mm;
+      background: rgba(22,163,74,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .back-contact-icon svg {
+      width: 2mm;
+      height: 2mm;
+      stroke: #16A34A;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .back-contact-text {
+      font-size: 2.3mm;
+      font-weight: 400;
+      color: #aaa;
+      letter-spacing: 0.01em;
+    }
+
+    .back-cert {
+      position: relative;
+      z-index: 1;
+      font-size: 1.8mm;
+      color: #ccc;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      border-top: 0.3mm solid #1e1e1e;
+      padding-top: 2mm;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: FRONT -->
+  <div class="card card-front">
+    <div class="front-logo">
+      <div class="brand">Flow360<span>Market</span><span class="brand-dot"></span></div>
+    </div>
+    <div class="front-bottom">
+      <div class="front-accent-line"></div>
+      <div class="front-tagline">
+        <strong>Less friction.</strong> Better margins.<br />
+        <strong>Automated decisions.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: BACK -->
+  <div class="card card-back">
+
+    <div class="back-name-block">
+      <div class="back-name">Patricio Valdés Pascual</div>
+      <div class="back-role">Operational Redesign Consultant</div>
+    </div>
+
+    <div class="back-contact">
+      <div class="back-contact-item">
+        <div class="back-contact-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <span class="back-contact-text">www.flow360market.com</span>
+      </div>
+      <div class="back-contact-item">
+        <div class="back-contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.62 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
+        </div>
+        <span class="back-contact-text">+34 644 79 86 60</span>
+      </div>
+      <div class="back-contact-item">
+        <div class="back-contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <span class="back-contact-text">contact@flow360market.com</span>
+      </div>
+    </div>
+
+    <div class="back-cert">
+      Lean® Six Sigma Green Belt &nbsp;·&nbsp; KAIZEN™ Institute &nbsp;·&nbsp; N° Reg: 47.908
+    </div>
+
+  </div>
+
+</body>
+</html>
