@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
 
     // 3. Send email notification (optional — requires RESEND_API_KEY)
     const resendKey = process.env.RESEND_API_KEY
-    const notificationEmail = process.env.NOTIFICATION_EMAIL || 'pvaldes.pascual@gmail.com'
+    const notificationEmail = process.env.NOTIFICATION_EMAIL || 'patricio@flow360market.com'
 
     if (resendKey) {
       const { Resend } = await import('resend')
